@@ -1,6 +1,12 @@
 # Ergotool
 
-Tools for working with ergogen-generated Kicad PCB files.
+Tools for working with ergogen-generated Kicad PCB files, including:
+
+*`update`*: Layout parts in an existing schematic-driven kicad project, using positioning data from ergogen.
+
+
+![Ergotool](ergotool.png)
+
 
 # Install
 
@@ -14,7 +20,7 @@ $ go install github.com/mlilley/go-ergotool/ergotool
 
 # Usage
 
-## Update
+*`update`*
 
 Assuming you have both an Ergogen design outputting a standalone kicad_pcb file (with your parts positioned nicely), and a seaparate, typical schematic-driven kicad project, dump your footprints from schematic to pcb, then use the tool to take the positioning data from the ergogen file and apply it to your project pcb file.
 
