@@ -26,8 +26,8 @@ Assuming you have both an Ergogen design outputting a standalone kicad_pcb file 
 
 ```
 $ ergotool update \
-    --source /path/to/ergogen/output.kicad_pcb 
-    --destination /path/to/kicad/project.kicad_pcb
+    --src /path/to/ergogen/output.kicad_pcb 
+    --dest /path/to/kicad/project.kicad_pcb
 ```
 
 Footprints are matched by "reference", so you do need to ensure both ergogen and your project use matching values.
