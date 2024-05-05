@@ -36,6 +36,9 @@ Re-run again at anytime to reposition your parts, if you change your ergogen lay
 
 _Tested with Kicad8 and ergogen 4._
 
+# Changelog
 
+- 2024-05-05 Fix rotation for footprint pads
+- 2024-05-04 Support files using at properties without 3rd rotation argument
 
 

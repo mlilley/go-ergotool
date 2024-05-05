@@ -60,14 +60,6 @@ func NewAtFromSexpr(s *sexpr.Sexpr) (*At, error) {
 	return &At{s: s, x: f1, y: f2, r: f3}, nil
 }
 
-func NewAtFromFootprint(s *sexpr.Sexpr) (*At, error) {
-	sat := s.FindDirectChildByName("at")
-	if sat == nil {
-		return nil, errors.New("missing 'at'")
-	}
-	return NewAtFromSexpr(sat)
-}
-
 func (a *At) Sexpr() *sexpr.Sexpr {
 	return a.s
 }
@@ -104,6 +96,12 @@ func (a *At) SetR(r float64) {
 	sp := a.s.Params()[2]
 	ss := sp.Value().(*sexpr.SexprString)
 	ss.SetValue(strconv.FormatFloat(r, 'f', -1, 64))
+}
+
+func (a *At) UpdateLocation(x, y, r float64) {
+	a.SetX(x)
+	a.SetY(y)
+	a.SetR(r)
 }
 
 func (a *At) String() string {

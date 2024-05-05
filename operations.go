@@ -2,10 +2,9 @@ package ergotool
 
 import (
 	"bufio"
+	"fmt"
 	"os"
 	"sort"
-
-	"github.com/labstack/gommon/log"
 )
 
 func ReadDoc(filename string) (*Doc, error) {
@@ -60,15 +59,9 @@ func UpdateFootprintLocations(src *Doc, dest *Doc) error {
 	for _, k := range keys {
 		destFp := destFootprints[k]
 		if srcFp, has := srcFootprints[destFp.Ref().Value()]; has {
-			x := srcFp.At().X()
-			y := srcFp.At().Y()
-			r := srcFp.At().R()
-
-			destFp.At().SetX(x)
-			destFp.At().SetY(y)
-			destFp.At().SetR(r)
+			destFp.UpdateLocation(srcFp.At().X(), srcFp.At().Y(), srcFp.At().R())
 		} else {
-			log.Warnf("failued to update footprint '%s': not found in source", destFp.Ref().Value())
+			fmt.Printf("failed to update footprint '%s': not found in source", destFp.Ref().Value())
 		}
 	}
 

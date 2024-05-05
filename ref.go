@@ -37,31 +37,6 @@ func NewRefFromSexpr(s *sexpr.Sexpr) (*Ref, error) {
 	return &Ref{s: s, v: s2}, nil
 }
 
-func NewRefFromFootprint(s *sexpr.Sexpr) (*Ref, error) {
-	sref := s.FindChild(func(ss *sexpr.Sexpr, depth int) bool {
-		if !strings.EqualFold(ss.Name(), "property") && !strings.EqualFold(ss.Name(), "fp_text") {
-			return false
-		}
-		if len(ss.Params()) < 2 {
-			return false
-		}
-		p0, err := ss.Params()[0].AsString()
-		if err != nil {
-			return false
-		}
-		if !strings.EqualFold(p0, "reference") {
-			return false
-		}
-		return true
-	}, 1)
-
-	if sref == nil {
-		return nil, errors.New("missing 'ref'")
-	}
-
-	return NewRefFromSexpr(sref)
-}
-
 func (kr *Ref) Sexpr() *sexpr.Sexpr {
 	return kr.s
 }
