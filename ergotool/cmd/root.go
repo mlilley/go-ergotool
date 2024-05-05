@@ -10,7 +10,6 @@ var rootCmd = &cobra.Command{
 	Use:   "ergotool",
 	Short: "Tools for working with ErgoGen files",
 	Long:  "Tools for working with ErgoGen files",
-	// Run: func(cmd *cobra.Command, args []string) { },
 }
 
 func Execute() {
@@ -21,5 +20,4 @@ func Execute() {
 }
 
 func init() {
-	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }

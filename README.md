@@ -15,7 +15,7 @@ Requires <a href="https://go.dev/">Go</a> (download & install from here: <a href
 Either clone the repo and build, or have go do it for you:
 
 ```
-$ go install github.com/mlilley/go-ergotool/ergotool
+$ go install github.com/mlilley/go-ergotool/ergotool@latest
 ```
 
 # Usage

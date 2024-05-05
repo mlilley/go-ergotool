@@ -4,7 +4,7 @@ go 1.21.6
 
 require (
 	github.com/labstack/gommon v0.4.2
-	github.com/mlilley/go-sexpr v0.0.0-20240424053044-a12a0e7a7720
+	github.com/mlilley/go-sexpr v0.0.0-20240505043938-3ca017e61305
 )
 
 require (
@@ -15,5 +15,5 @@ require (
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasttemplate v1.2.2 // indirect
-	golang.org/x/sys v0.19.0 // indirect
+	golang.org/x/sys v0.20.0 // indirect
 )

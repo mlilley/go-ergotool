@@ -27,8 +27,8 @@ func NewAtFromSexpr(s *sexpr.Sexpr) (*At, error) {
 	if s.Name() != "at" {
 		return nil, errors.New("element is not an 'at'")
 	}
-	if len(s.Params()) != 3 {
-		return nil, errors.New("element 'at' requires 3 params")
+	if len(s.Params()) != 2 && len(s.Params()) != 3 {
+		return nil, errors.New("element 'at' requires 2 or 3 params")
 	}
 
 	f1, err := s.Params()[0].AsFloat()
@@ -39,6 +39,17 @@ func NewAtFromSexpr(s *sexpr.Sexpr) (*At, error) {
 	f2, err := s.Params()[1].AsFloat()
 	if err != nil {
 		return nil, errors.New("element 'at' requires param 2 to be a float")
+	}
+
+	if len(s.Params()) == 2 {
+		str := sexpr.NewSexprStringQuoted("0", false)
+		sp, err := sexpr.NewSexprParam(str)
+		if err != nil {
+			return nil, err
+		}
+		s.AddParam(2, sp)
+
+		return &At{s: s, x: f1, y: f2, r: 0}, nil
 	}
 
 	f3, err := s.Params()[2].AsFloat()
@@ -78,21 +89,21 @@ func (a *At) SetX(x float64) {
 	s := a.s
 	sp := s.Params()[0]
 	ss := sp.Value().(*sexpr.SexprString)
-	ss.Set(strconv.FormatFloat(x, 'f', -1, 64))
+	ss.SetValue(strconv.FormatFloat(x, 'f', -1, 64))
 }
 
 func (a *At) SetY(y float64) {
 	a.y = y
 	sp := a.s.Params()[1]
 	ss := sp.Value().(*sexpr.SexprString)
-	ss.Set(strconv.FormatFloat(y, 'f', -1, 64))
+	ss.SetValue(strconv.FormatFloat(y, 'f', -1, 64))
 }
 
 func (a *At) SetR(r float64) {
 	a.r = r
 	sp := a.s.Params()[2]
 	ss := sp.Value().(*sexpr.SexprString)
-	ss.Set(strconv.FormatFloat(r, 'f', -1, 64))
+	ss.SetValue(strconv.FormatFloat(r, 'f', -1, 64))
 }
 
 func (a *At) String() string {

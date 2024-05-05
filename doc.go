@@ -46,11 +46,13 @@ func (d *Doc) enumerateFootprints(name string, footprints *map[string]*Footprint
 	for _, s := range sexprs {
 		fp, err := NewFootprintFromSexpr(s)
 		if err != nil {
-			log.Warnf("ignoring invalid footprint at Line %d, Col %d: %s", s.Line(), s.Col(), err.Error())
+			l, c := s.Location()
+			log.Warnf("ignoring invalid footprint at Line %d, Col %d: %s", l, c, err.Error())
 			continue
 		}
 		if _, has := (*footprints)[fp.Ref().Value()]; has {
-			log.Warnf("ignoring footprint with duplicate ref '%s' at Line %d, Col %d", fp.Ref().Value(), s.Line(), s.Col())
+			l, c := s.Location()
+			log.Warnf("ignoring footprint with duplicate ref '%s' at Line %d, Col %d", fp.Ref().Value(), l, c)
 			continue
 		}
 		(*footprints)[fp.Ref().Value()] = fp
